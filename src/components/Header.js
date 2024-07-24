@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import navLogo from "../assets/logo.jpg";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import Card from "./Card";
-import ReportCard from "./ReportCard";
+import logo from '../assets/logo.jpg'
+import Popup from "reactjs-popup";
+import 'reactjs-popup/dist/index.css';
 
 const Header = () => {
-  const [openCard, setOpenCard] = useState(false);
-  const [reportCard, setReportCard] = useState(false);
+  const [rating, setRating] = useState(0);
+
+  const popup = () => {
+    alert("Submitted successfully!");
+  }
 
 
   return (
     <>
-      <nav class={`navbar bg-white sticky-top ${styles.navBar}`}>
-        <div class="container-fluid">
+      <nav className={`navbar bg-white sticky-top ${styles.navBar}`}>
+        <div className="container-fluid">
 
           <div className={styles.navbarWrap}>
             <button
@@ -23,25 +27,119 @@ const Header = () => {
               data-bs-target="#offcanvasNavbar"
               aria-controls="offcanvasNavbar"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-
-            {/* <div className={styles.navbarWrap}> */}
-            <a class="navbar-brand" href="#">
+            <a className="navbar-brand" href="#">
               <img src={navLogo} alt="Bootstrap" className={styles.img} />
             </a>
           </div>
+
           <div className="btns">
-            <button type="button" className="btn btn-primary" onClick={() => setOpenCard(!openCard)}>
+            <Popup modal trigger={<button type="button" className="btn btn-primary">
               Rate Me
-            </button>
-            <button type="button" className="btn btn-primary" onClick={() => setReportCard(!reportCard)}>
+            </button>} position="right center">
+              {close => (
+                <div>
+                  <img src={logo} class="card-img-top" alt="..." className={styles.headerimg} />
+                  <a className="close" onClick={close}>
+                    &times;
+                  </a>
+                  <div className={styles.header}>
+                    <h5 class="card-title" className={styles.rate}>Rate</h5>
+                  </div>
+                  <div className={styles.ratestart}>
+                    {[1, 2, 3, 4, 5].map((star) => {
+                      return (
+                        <span
+                          className='start'
+                          style={{
+                            cursor: 'pointer',
+                            color: rating >= star ? 'gold' : 'gray',
+                            fontSize: `35px`,
+                            transition: `.5s`,
+                          }}
+                          onClick={() => {
+                            setRating(star)
+                          }}
+                        >
+                          {' '}
+                          ★{' '}
+                        </span>
+                      )
+                    })}
+                  </div>
+                  <hr />
+                  <div className={styles.btn}>
+                    <button type="submit" class="btn btn-primary" onClick={popup}>Submit</button>
+                    <button type="reset" class="btn btn-primary" onClick={() => setRating(0)}>Cancel</button>
+                  </div>
+                </div>
+              )}
+            </Popup>
+
+            <Popup modal trigger={<button type="button" className="btn btn-primary">
               Report a Bug
-            </button>
+            </button>} position="right center">
+              {close => (
+                <div>
+                  <a className="close" onClick={close}>
+                    &times;
+                  </a>
+                  <div className={styles.header}>
+                    <h5 class="card-title" className={styles.bug}>Bug Report</h5>
+                  </div>
+                  <hr />
+                  <div className={styles.content}>
+                    <p>Please select the issue</p>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="issue" />
+                      <label class="form-check-label" for="issue">Incorrect Options</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="issue" />
+                      <label class="form-check-label" for="issue">Incorrect Answer</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="issue" />
+                      <label class="form-check-label" for="issue">Incorrect Question</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="issue" />
+                      <label class="form-check-label" for="issue">Page Not Loading</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="issue" />
+                      <label class="form-check-label" for="issue">Content Not Visible</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="issue" />
+                      <label class="form-check-label" for="issue">Incorrect Content</label>
+                    </div>
+                    <br />
+                    <div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Please describe your issue</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter description here..."></textarea>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="form-group my-4">
+                        <label for="exampleInputEmail1">Please enter your email (Optional)</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email here for communication" />
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className={styles.btn}>
+                    <button type="submit" class="btn btn-primary" onClick={popup}>Submit</button>
+                  </div>
+                </div>
+              )}
+            </Popup>
           </div>
-          {/* </div> */}
 
-
+          {/* sider bar */}
           <div
             class="offcanvas offcanvas-start"
             tabindex="-1"
@@ -61,11 +159,6 @@ const Header = () => {
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                {/* <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
-                    Home
-                  </a>
-                </li> */}
                 <li class="nav-item">
                   <Link to="/alm" class='nav-link active'>Alm</Link>
                 </li>
@@ -95,27 +188,6 @@ const Header = () => {
           </div>
         </div>
       </nav>
-
-      {openCard ? <Card /> : ""}
-      {reportCard ? <ReportCard /> : ""}
-
-      {/* <nav class="navbar bg-light" className={styles.navBar}>
-        <div class="container">
-          <div className={styles.navbarWrap}>
-            <a class="navbar-brand" href="#">
-              <img src={navLogo} alt="Bootstrap" className={styles.img} />
-            </a>  
-            <div className="btns">
-              <button type="button" className="btn btn-primary">
-                Rate Me
-              </button>
-              <button type="button" className="btn btn-primary">
-                Report a Bug
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav> */}
     </>
   );
 };

@@ -1,6 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #ECEFF4;
+    /* background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important; */
 }
 
 h2 {
@@ -144,4 +145,60 @@ h3:hover {
 .fa-rss {
     background: #ff6600;
     color: white;
+}
+
+.popup-content {
+    width: 22% !important;
+    border-radius: 10px;
+    padding: 16px !important;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .popup-content {
+        width: 68% !important;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .popup-content {
+        width: 44% !important;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .popup-content {
+        width: 30% !important;
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+    .popup-content {
+        width: 25% !important;
+    }
+}
+
+.popup-content .close {
+    position: absolute;
+    right: 20px;
+    font-size: 28px;
+    text-decoration: none;
+    top: 6px;
+    cursor: pointer;
+}
+
+.btnlink {
+    text-decoration: none;
+    background-color: #0d6efd;
+    color: #fff;
+    font-size: 18px;
+    font-family: monospace;
+    padding: 6px 12px;
+    text-align: center;
+    border-radius: 5px;
+    border-color: #0d6efd;
+}
+
+.btnlink:hover {
+    background: #0a58ca;
+    color: #fff;
 }

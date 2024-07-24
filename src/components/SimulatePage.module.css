@@ -12,9 +12,8 @@
     line-height: 1.1;
 }
 
-/* .btns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-} */
+.wrapper {
+    background-color: rgba(245, 245, 245, 100);
+    padding: 35px;
+    margin-top: 26px;
+}

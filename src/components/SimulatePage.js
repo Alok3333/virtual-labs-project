@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SimulatePage.module.css';
+import { Link, Outlet } from 'react-router-dom';
 
 const SimulatePage = () => {
     return (
@@ -14,12 +15,11 @@ const SimulatePage = () => {
                     <h2>Simulation</h2>
                 </div>
                 <div className="btns">
-                    <button type="button" className="btn btn-primary">
-                        Half Adder
-                    </button>
-                    <button type="button" className="btn btn-primary">
-                        Full Adder
-                    </button>
+                    <Link to="/halfadder" className="btnlink">Half Adder</Link>
+                    <Link to="/fulladder" className="btnlink">Full Adder</Link>
+                </div>
+                <div className={`container ${styles.wrapper}`}>
+                    <Outlet />
                 </div>
             </div>
         </>

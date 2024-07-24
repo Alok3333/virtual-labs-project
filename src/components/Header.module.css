@@ -11,8 +11,43 @@
     gap: 12px;
 }
 
+.headerimg {
+    width: 184px;
+    height: 118px;
+}
+
 .img {
     width: 86px;
     height: 54px;
     max-width: 100%;
+}
+
+.header {
+    margin: 20px 0px;
+}
+
+.ratestart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rate {
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.bug {
+    color: #ff6600;
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 12px;
 }
